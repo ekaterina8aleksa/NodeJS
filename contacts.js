@@ -3,11 +3,15 @@ const path = require("path");
 
 class Contacts {
     constructor() {
-        this.fileContactsPath = path.resolve(__dirname, "db", "contacts.json");
+        this.FILE_CONTACTS_PATH = path.resolve(
+            __dirname,
+            "db",
+            "contacts.json"
+        );
     }
     listContacts = async () => {
         try {
-            const contactsData = await fs.readFile(this.fileContactsPath, {
+            const contactsData = await fs.readFile(this.FILE_CONTACTS_PATH, {
                 encoding: "utf-8",
             });
             return JSON.parse(contactsData);
@@ -30,9 +34,9 @@ class Contacts {
             const contactsData = await this.listContacts();
             const id = contactsData.length ? [...contactsData].pop().id + 1 : 1; //or contactsData.length + 1
             const newContact = { id, name, email, phone };
-            contactsData.push(newContact);
+            await contactsData.push(newContact);
             const contactsDataJson = JSON.stringify(contactsData);
-            fs.writeFile(this.fileContactsPath, contactsDataJson);
+            fs.writeFile(this.FILE_CONTACTS_PATH, contactsDataJson);
             return newContact;
         } catch (err) {
             console.log("Error adding new contact", err);
@@ -41,10 +45,10 @@ class Contacts {
     removeContact = async (contactId) => {
         try {
             const contactsData = await this.listContacts();
-            const result = contactsData.filter(
+            const result = await contactsData.filter(
                 (contact) => contact.id !== contactId
             );
-            fs.writeFile(this.fileContactsPath, JSON.stringify(result));
+            fs.writeFile(this.FILE_CONTACTS_PATH, JSON.stringify(result));
             return result;
         } catch (err) {
             console.log(`Error deleting contact with id ${contactId}`, err);
