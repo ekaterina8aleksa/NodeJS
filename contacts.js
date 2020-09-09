@@ -35,8 +35,8 @@ class Contacts {
             const id = contactsData.length ? [...contactsData].pop().id + 1 : 1; //or contactsData.length + 1
             const newContact = { id, name, email, phone };
             await contactsData.push(newContact);
-            const contactsDataJson = JSON.stringify(contactsData);
-            fs.writeFile(this.FILE_CONTACTS_PATH, contactsDataJson);
+            const contactsDataJson = await JSON.stringify(contactsData);
+            await fs.writeFile(this.FILE_CONTACTS_PATH, contactsDataJson);
             return newContact;
         } catch (err) {
             console.log("Error adding new contact", err);
@@ -48,7 +48,7 @@ class Contacts {
             const result = await contactsData.filter(
                 (contact) => contact.id !== contactId
             );
-            fs.writeFile(this.FILE_CONTACTS_PATH, JSON.stringify(result));
+            await fs.writeFile(this.FILE_CONTACTS_PATH, JSON.stringify(result));
             return result;
         } catch (err) {
             console.log(`Error deleting contact with id ${contactId}`, err);
