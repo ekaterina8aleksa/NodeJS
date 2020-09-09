@@ -35,7 +35,7 @@ class Contacts {
             const id = contactsData.length ? [...contactsData].pop().id + 1 : 1; //or contactsData.length + 1
             const newContact = { id, name, email, phone };
             await contactsData.push(newContact);
-            const contactsDataJson = await JSON.stringify(contactsData);
+            const contactsDataJson = JSON.stringify(contactsData);
             await fs.writeFile(this.FILE_CONTACTS_PATH, contactsDataJson);
             return newContact;
         } catch (err) {
