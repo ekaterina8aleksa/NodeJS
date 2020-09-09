@@ -1,0 +1,27 @@
+{
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "study nodejs",
+    "main": "index.js",
+    "dependencies": {
+        "fs": "0.0.1-security",
+        "nodemon": "^2.0.4",
+        "yargs": "^15.4.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemone index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ekaterina8aleksa/NodeJS.git"
+    },
+    "author": "Ekaterina",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ekaterina8aleksa/NodeJS/issues"
+    },
+    "homepage": "https://github.com/ekaterina8aleksa/NodeJS#readme"
+}
